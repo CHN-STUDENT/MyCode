@@ -2,16 +2,17 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <windows.h>
+#include <string.h>
 void merge(void)
 {//合并文件函数 
-	FILE *f; 
+	FILE *s; 
 	printf("\n请输入合并文件的路径地址：\n");
-	char filepath[256];
+	char save[256];
 	printf("\n"); 
-	gets(filepath);
+	gets(save);
 	printf("\n"); 
-	f=fopen(filepath,"wb"); 
-	if(!f)
+	s=fopen(save,"wb"); 
+	if(!s)
 	{
 		printf("\n无法另存文件，请重试！\n");
 		exit -1; 
@@ -30,20 +31,20 @@ void merge(void)
 		// _itoa(int num,char *ch,int radix)  
 		strcat(name,".part");
 		FILE *open=fopen(name,"rb");
-		if(!open)
-		{
+		if(!open)  
+		{//遍历*.part,如果打不开则认为结束 
+			fclose(s);
 			break;
 		}
 		while(1)
 		{
-			fread(&ch,sizeof(char),1,open);//从输入流f(文件指针)每次读取一个数据项(字符char),一个数据项8个字节，存在接受数据ch内存地址中 
-			fwrite(&ch,sizeof(char),1,f);
+			fread(&ch,sizeof(char),1,open);//从输入流f(文件指针)每次读取一个数据项(字符char),一个数据项8个字节，存在接受数据ch内存地址中
 			if(feof(open)!=0)
-				break;
+				break; 
+			fwrite(&ch,sizeof(char),1,s);
 		}
 		fclose(open);
 	}	
-	fclose(f);
 	printf("\n合并操作已经完成！\n"); 
 }; 
 
@@ -200,6 +201,7 @@ int main(int argc ,char ** argv)
 	char input; 
 	while(1)
 	{
+		fflush(stdin);//必须加！不然第二次执行会出bug。 
 		printf("\n----------------------------\n"); 
 		printf("\n请输入：\n"); 
 		printf("\n1.分割\n");
