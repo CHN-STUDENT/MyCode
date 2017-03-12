@@ -4,9 +4,9 @@
 #include <windows.h>
 #include <string.h>
 void merge(void)
-{//ºÏ²¢ÎÄ¼şº¯Êı 
+{//åˆå¹¶æ–‡ä»¶å‡½æ•° 
 	FILE *s; 
-	printf("\nÇëÊäÈëºÏ²¢ÎÄ¼şµÄÂ·¾¶µØÖ·£º\n");
+	printf("\nè¯·è¾“å…¥åˆå¹¶æ–‡ä»¶çš„è·¯å¾„åœ°å€ï¼š\n");
 	char save[256];
 	printf("\n"); 
 	gets(save);
@@ -14,46 +14,46 @@ void merge(void)
 	s=fopen(save,"wb"); 
 	if(!s)
 	{
-		printf("\nÎŞ·¨Áí´æÎÄ¼ş£¬ÇëÖØÊÔ£¡\n");
+		printf("\næ— æ³•å¦å­˜æ–‡ä»¶ï¼Œè¯·é‡è¯•ï¼\n");
 		exit -1; 
 	} 
 	printf("\n----------------------------\n");
-	printf("\n           ±¸×¢             \n");
-	printf("\n ³ÌĞò»áËÑË÷µ±Ç°Ä¿Â¼ÏÂ*.part \n");
-	printf("\n    ²¢ÇÒ»á×Ô¶¯ºÏ³ÉËüÃÇ    \n");
+	printf("\n           å¤‡æ³¨             \n");
+	printf("\n ç¨‹åºä¼šæœç´¢å½“å‰ç›®å½•ä¸‹*.part \n");
+	printf("\n    å¹¶ä¸”ä¼šè‡ªåŠ¨åˆæˆå®ƒä»¬    \n");
 	printf("\n----------------------------\n");
 	int nemb=0;
 	char name[100]; 
 	char ch;
 	for(;;nemb++)
-	{
-		_itoa(nemb,name,10);//½«Êı×Ö×ª»»³É×Ö·û´®£¬½«Êı×Öa×ª³É10½øÖÆ×Ö·û´®´æÔÚnameÀï 
+	{//è¿™ä¸ªå¾ªç¯ä¼šä¸€ç›´æ‰“å¼€*.part,ç›´åˆ°æ‰“ä¸å¼€ä¸ºæ­¢ 
+		_itoa(nemb,name,10);//å°†æ•°å­—è½¬æ¢æˆå­—ç¬¦ä¸²ï¼Œå°†æ•°å­—aè½¬æˆ10è¿›åˆ¶å­—ç¬¦ä¸²å­˜åœ¨nameé‡Œ 
 		// _itoa(int num,char *ch,int radix)  
-		strcat(name,".part");
+		strcat(name,".part"); 
 		FILE *open=fopen(name,"rb");
 		if(!open)  
-		{//±éÀú*.part,Èç¹û´ò²»¿ªÔòÈÏÎª½áÊø 
-			fclose(s);
-			break;
+		{//éå†*.part,å¦‚æœæ‰“ä¸å¼€åˆ™è®¤ä¸ºç»“æŸ 
+			fclose(s);//å…³é—­è¦åˆå¹¶æˆçš„æ–‡ä»¶ 
+			break;//é€€æ‰å¾ªç¯ 
 		}
 		while(1)
-		{
-			fread(&ch,sizeof(char),1,open);//´ÓÊäÈëÁ÷f(ÎÄ¼şÖ¸Õë)Ã¿´Î¶ÁÈ¡Ò»¸öÊı¾İÏî(×Ö·ûchar),Ò»¸öÊı¾İÏî8¸ö×Ö½Ú£¬´æÔÚ½ÓÊÜÊı¾İchÄÚ´æµØÖ·ÖĞ
-			if(feof(open)!=0)
+		{//æŠŠæ¯ä¸ª*.partå†…å®¹åˆå¹¶åœ¨ä¸€èµ· 
+			fread(&ch,sizeof(char),1,open);//ä»è¾“å…¥æµf(æ–‡ä»¶æŒ‡é’ˆ)æ¯æ¬¡è¯»å–ä¸€ä¸ªæ•°æ®é¡¹(å­—ç¬¦char),ä¸€ä¸ªæ•°æ®é¡¹8ä¸ªå­—èŠ‚ï¼Œå­˜åœ¨æ¥å—æ•°æ®chå†…å­˜åœ°å€ä¸­
+			if(feof(open)!=0)//è¿™æ˜¯è¯»åˆ°æœ€åä¸€ä¸ª*.partæƒ…å†µ 
 				break; 
 			fwrite(&ch,sizeof(char),1,s);
 		}
-		fclose(open);
+		fclose(open);//å…³é—­æ‰“å¼€çš„*.partæ–‡ä»¶æŒ‡é’ˆ 
 	}	
-	printf("\nºÏ²¢²Ù×÷ÒÑ¾­Íê³É£¡\n"); 
+	printf("\nåˆå¹¶æ“ä½œå·²ç»å®Œæˆï¼\n"); 
 }; 
 
 void compare(void)
-{//±È½ÏÎÄ¼şº¯Êı
+{//æ¯”è¾ƒæ–‡ä»¶å‡½æ•°
 	FILE *f1;
 	while(1)
 	{
-		printf("\nÇëÊäÈë±È½ÏÔ´ÎÄ¼şÂ·¾¶µØÖ·£º\n");
+		printf("\nè¯·è¾“å…¥æ¯”è¾ƒæºæ–‡ä»¶è·¯å¾„åœ°å€ï¼š\n");
 		char filepath1[256];
 		printf("\n"); 
 		gets(filepath1);
@@ -61,7 +61,7 @@ void compare(void)
 		f1=fopen(filepath1,"rb"); 
 		if(!f1)
 		{
-			printf("\nÎÄ¼ş´ò¿ªÊ§°Ü£¬ÇëÖØÊÔ£¡\n"); 
+			printf("\næ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼Œè¯·é‡è¯•ï¼\n"); 
 			printf("\n----------------------------\n"); 
 		} 
 		if(f1)
@@ -70,7 +70,7 @@ void compare(void)
 	FILE *f2;
 	while(1)
 	{
-		printf("\nÇëÊäÈë±È½ÏºÏ²¢ÎÄ¼şÂ·¾¶µØÖ·£º\n");
+		printf("\nè¯·è¾“å…¥æ¯”è¾ƒåˆå¹¶æ–‡ä»¶è·¯å¾„åœ°å€ï¼š\n");
 		char filepath2[256];
 		printf("\n"); 
 		gets(filepath2);
@@ -78,7 +78,7 @@ void compare(void)
 		f2=fopen(filepath2,"rb"); 
 		if(!f2)
 		{
-			printf("\nÎÄ¼ş´ò¿ªÊ§°Ü£¬ÇëÖØÊÔ£¡\n"); 
+			printf("\næ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼Œè¯·é‡è¯•ï¼\n"); 
 			printf("\n----------------------------\n"); 
 		} 
 		if(f2)
@@ -95,13 +95,12 @@ void compare(void)
 		data2++;
 	}
 	if(data1!=data2)
-	{
+	{//å…ˆæ¯”è¾ƒä¸¤ä¸ªæ–‡ä»¶å¤§å°ï¼Œå¦‚æœå¤§å°ä¸ä¸€è‡´ç›´æ¥è®¤ä¸ºæ–‡ä»¶ä¸ç›¸åŒ 
 		printf("\n----------------------------\n"); 
-		printf("\nÎÄ¼şĞ£ÑéÊ§°Ü£¡\n");
-		
+		printf("\næ–‡ä»¶æ ¡éªŒå¤±è´¥ï¼\n");
 	} 
 	else
-	{ 
+	{//æ–‡ä»¶å¤§å°ä¸€è‡´æ¯”å¯¹æ¯ä¸ªå­—èŠ‚ 
 		char ch1;
 		char ch2;
 		int sign=0;
@@ -110,10 +109,10 @@ void compare(void)
 			fread(&ch1,sizeof(char),1,f1);
 			fread(&ch2,sizeof(char),1,f2);
 			if(ch1!=ch2)
-			{
-				sign=1;
+			{//å‘ç°æŸä¸ªå­—èŠ‚ä¸ä¸€æ ·ç›´æ¥è®¤ä¸ºæ–‡ä»¶ä¸ç›¸åŒ 
+				sign=1;//æ”¹å˜çŠ¶æ€å‡½æ•° 
 				printf("\n----------------------------\n"); 
-				printf("\nÎÄ¼şĞ£ÑéÊ§°Ü£¡\n");
+				printf("\næ–‡ä»¶æ ¡éªŒå¤±è´¥ï¼\n");
 				break;	
 			}
 			if(feof(f2)!=0&&feof(f2)!=0)
@@ -122,17 +121,17 @@ void compare(void)
 		if(sign==0)
 		{
 			printf("\n----------------------------\n"); 
-			printf("\nÎÄ¼şĞ£Ñé³É¹¦£¡\n");
+			printf("\næ–‡ä»¶æ ¡éªŒæˆåŠŸï¼\n");
 		}	
 	}
 };
 
 void split(void)
-{//·Ö¸îÎÄ¼şº¯Êı 
+{//åˆ†å‰²æ–‡ä»¶å‡½æ•° 
 	FILE *f;
 	while(1)
 	{ 
-		printf("\nÇëÊäÈë·Ö¸îÎÄ¼şÂ·¾¶µØÖ·:\n");
+		printf("\nè¯·è¾“å…¥åˆ†å‰²æ–‡ä»¶è·¯å¾„åœ°å€:\n");
 		char filepath[256];
 		printf("\n"); 
 		gets(filepath);
@@ -140,86 +139,87 @@ void split(void)
 		f=fopen(filepath,"rb"); 
 		if(!f)
 		{
-			printf("\nÎÄ¼ş´ò¿ªÊ§°Ü£¬ÇëÖØÊÔ£¡\n"); 
+			printf("\næ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼Œè¯·é‡è¯•ï¼\n"); 
 			printf("\n----------------------------\n"); 
 		} 
 		if(f)
 			break;
 	} 
 	printf("\n----------------------------\n");
-	printf("\n           ±¸×¢             \n");
-	printf("\n ·Ö¸îµÄÎÄ¼ş½«´æÎª*.part¸ñÊ½ \n");
+	printf("\n           å¤‡æ³¨             \n");
+	printf("\n åˆ†å‰²çš„æ–‡ä»¶å°†å­˜ä¸º*.partæ ¼å¼ \n");
 	printf("\n----------------------------\n");
-	printf("\nÇëÊäÈëÃ¿·İµÄ´óĞ¡(µ¥Î»Byte):\n");
+	printf("\nè¯·è¾“å…¥æ¯ä»½çš„å¤§å°(å•ä½Byte):\n");
 	int data;
 	char temp[1048576];
 	printf("\n");
 	scanf("%d",&data);	
-	int b=1;//bÎª1byte 
-	int nemb=0;//nembÎÄ¼şÃû 
+	int b=1;//bä¸º1byte 
+	int nemb=0;//nembæ–‡ä»¶å 
 	char name[100];
 	int stopAll=0;
 	char ch;
 	for(;;nemb++)
-	{
-		_itoa(nemb,name,10);//½«Êı×Ö×ª»»³É×Ö·û´®£¬½«Êı×Öa×ª³É10½øÖÆ×Ö·û´®´æÔÚnameÀï 
+	{//å¾ªç¯è‡ªåŠ¨ç”Ÿæˆ*.part 
+		_itoa(nemb,name,10);//å°†æ•°å­—è½¬æ¢æˆå­—ç¬¦ä¸²ï¼Œå°†æ•°å­—aè½¬æˆ10è¿›åˆ¶å­—ç¬¦ä¸²å­˜åœ¨nameé‡Œ 
 		// _itoa(int num,char *ch,int radix)  
 		strcat(name,".part");
 		FILE *out=fopen(name,"wb");
+		/*ä¸Šé¢ä¸‰å¥æ˜¯å¤„ç†åå­—å˜æˆ*.part*/
 		if(!out)
 		{
-			printf("´æÈ¡ÎÄ¼ş´íÎó");
+			printf("å­˜å–æ–‡ä»¶é”™è¯¯");
 			exit -1;
 		}
 		for(int b=1;b<=data;b++)
-		{
-			fread(&ch,sizeof(char),1,f);//´ÓÊäÈëÁ÷f(ÎÄ¼şÖ¸Õë)Ã¿´Î¶ÁÈ¡Ò»¸öÊı¾İÏî(×Ö·ûchar),Ò»¸öÊı¾İÏî8¸ö×Ö½Ú£¬´æÔÚ½ÓÊÜÊı¾İchÄÚ´æµØÖ·ÖĞ 
+		{//å¾ªç¯ä½¿*.partç­‰äºè‡ªå®šä¹‰å¤§å° 
+			fread(&ch,sizeof(char),1,f);//ä»è¾“å…¥æµf(æ–‡ä»¶æŒ‡é’ˆ)æ¯æ¬¡è¯»å–ä¸€ä¸ªæ•°æ®é¡¹(å­—ç¬¦char),ä¸€ä¸ªæ•°æ®é¡¹8ä¸ªå­—èŠ‚ï¼Œå­˜åœ¨æ¥å—æ•°æ®chå†…å­˜åœ°å€ä¸­ 
 			//fread ( void *buffer, size_t size, size_t count, FILE *stream); 
 			if(feof(f))
-			{//Èç¹û¶Áµ½ÎÄ¼şÄ©Î² 
-				stopAll=1;  //×´Ì¬º¯Êı=1 
+			{//å¦‚æœè¯»åˆ°æ–‡ä»¶æœ«å°¾ 
+				stopAll=1;  //çŠ¶æ€å‡½æ•°=1 
 				break;  
 			}
 			fwrite(&ch,sizeof(char),1,out);
 		}//for(int b=1;b<=size;b++)
-		fclose(out);//ÎÄ¼şÖ¸Õë¹Ø±Õ
+		fclose(out);//æ–‡ä»¶æŒ‡é’ˆå…³é—­
 		if(stopAll!=0)
 			break;
 	}
 	fclose(f); 
 	printf("\n----------------------------\n");
-	printf("\n·Ö¸î²Ù×÷ÒÑ¾­Íê³É£¡\n"); 
+	printf("\nåˆ†å‰²æ“ä½œå·²ç»å®Œæˆï¼\n"); 
 };
  
 int main(int argc ,char ** argv)
 {
 	
-	system("mode con cols=28");//ÉèÖÃ¿í¶È28
-	system("color A");//×ÖÌåÉèÖÃÎªÂÌÉ« 
+	system("mode con cols=28");//è®¾ç½®å®½åº¦28
+	system("color A");//å­—ä½“è®¾ç½®ä¸ºç»¿è‰² 
 	printf("\n----------------------------\n"); 
-	printf("\n------ÎÄ¼ş·Ö¸îÓëºÏ²¢Æ÷------\n");
+	printf("\n------æ–‡ä»¶åˆ†å‰²ä¸åˆå¹¶å™¨------\n");
 	printf("\n------      V0.0.1    ------\n"); 
 	char input; 
 	while(1)
 	{
-		fflush(stdin);//±ØĞë¼Ó£¡²»È»µÚ¶ş´ÎÖ´ĞĞ»á³öbug¡£ 
+		fflush(stdin);//å¿…é¡»åŠ ï¼ä¸ç„¶ç¬¬äºŒæ¬¡æ‰§è¡Œä¼šå‡ºbugã€‚ 
 		printf("\n----------------------------\n"); 
-		printf("\nÇëÊäÈë£º\n"); 
-		printf("\n1.·Ö¸î\n");
-		printf("\n2.ºÏ²¢\n");
-		printf("\n3.Ğ£ÑéÎÄ¼ş\n"); 
-		printf("\ne.ÍË³ö\n"); 
+		printf("\nè¯·è¾“å…¥ï¼š\n"); 
+		printf("\n1.åˆ†å‰²\n");
+		printf("\n2.åˆå¹¶\n");
+		printf("\n3.æ ¡éªŒæ–‡ä»¶\n"); 
+		printf("\ne.é€€å‡º\n"); 
 		printf("\n----------------------------\n"); 
 		input=getch();
-		if(input!='1'&&input!='2'&&input!='3'&&input!='e')
-			printf("\nÊäÈë´íÎó£¬ÇëÖØÊÔ\n");
+		if(input!='1'&&input!='2'&&input!='3'&&input!='e'&&input=='E')
+			printf("\nè¾“å…¥é”™è¯¯ï¼Œè¯·é‡è¯•\n");
 		if(input=='1')
 			split(); 
 		if(input=='2')
 			merge(); 
 		if(input=='3') 
 			compare(); 
-		if(input=='e') 
+		if(input=='e'&&input=='E') 
 			exit (0);
 	} 
 	return 0;
