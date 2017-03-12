@@ -186,6 +186,7 @@ void split(void)
 		if(stopAll!=0)
 			break;
 	}
+	fclose(f); 
 	printf("\n----------------------------\n");
 	printf("\n分割操作已经完成！\n"); 
 };
